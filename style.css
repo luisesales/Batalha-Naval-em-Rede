@@ -1,0 +1,26 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 1px;
+}
+
+.cell {
+    background-color: lightblue;
+    border: 1px solid black;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.ship {
+    background-color: darkblue;
+}
+
+.hit {
+    background-color: red;
+}
+
+.miss {
+    background-color: gray;
+}
