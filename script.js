@@ -1,23 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const grid = document.getElementById('enemyGrid');
-    const cells = [];
+    const enemyGrid = document.getElementById('enemyGrid');
+    const playerGrid = document.getElementById('playerGrid');
+    const enemyCells = [], playerCells = [];
     const ships = [
         { locations: [0, 1, 2], hits: ['', '', ''] },
         { locations: [7, 8, 9], hits: ['', '', ''] }
     ];
+    let playerShips = [
+        { locations: [ , , ] , hits: ['', '', '']}
+    ];
 
     function createGrid() {
         for (let i = 0; i < 100; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            cells.push(cell);
-            cell.dataset.index = i;
-            cell.addEventListener('click', handleClick);
-            grid.appendChild(cell);
+
+            // Creating player cell
+            const playerCell = document.createElement('div');
+            playerCell.classList.add('cell');
+            playerCell.dataset.index = i;
+            playerCells.addEventListener('click', handleMove);
+            playerGrid.appendChild(playerCell);
+
+            // Creating enemy cell
+            const enemyCell = document.createElement('div');            
+            enemyCell.classList.add('cell');            
+            enemyCells.push(enemyCell);
+            enemyCells.dataset.index = i;
+            enemyCells.addEventListener('click', handleAttack);
+            enemyGrid.appendChild(enemyCell);
         }
     }
 
-    function handleClick(event) {
+    function handleMove(event){
+        let index = event.target.dataset.index;
+        if(event.button == 2){
+
+        }
+
+    }
+
+
+    function handleAttack(event) {
         const index = event.target.dataset.index;
         const hit = checkHit(index);
         if (hit) {
@@ -25,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             event.target.classList.add('miss');
         }
+    }
+
+    function checkShip(index){
+        //for (let ship of ships)
     }
 
     function checkHit(index) {
@@ -40,6 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return false;
     }
-
     createGrid();
+
 });
