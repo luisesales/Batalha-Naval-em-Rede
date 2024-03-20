@@ -10,33 +10,18 @@ document.addEventListener('DOMContentLoaded', function() {
         { locations: [ , , ] , hits: ['', '', '']}
     ];
 
-    function createGrid() {
-        for (let i = 0; i < 100; i++) {
+    
 
-            // Creating player cell
-            const playerCell = document.createElement('div');
-            playerCell.classList.add('cell');
-            playerCell.dataset.index = i;
-            playerCells.addEventListener('click', handleMove);
-            playerGrid.appendChild(playerCell);
-
-            // Creating enemy cell
-            const enemyCell = document.createElement('div');            
-            enemyCell.classList.add('cell');            
-            enemyCells.push(enemyCell);
-            enemyCells.dataset.index = i;
-            enemyCells.addEventListener('click', handleAttack);
-            enemyGrid.appendChild(enemyCell);
-        }
-    }
 
     function handleMove(event){
         let index = event.target.dataset.index;
-        if(event.button == 2){
+        /*if(){
 
-        }
+        }*/
 
     }
+
+
 
 
     function handleAttack(event) {
@@ -48,6 +33,27 @@ document.addEventListener('DOMContentLoaded', function() {
             event.target.classList.add('miss');
         }
     }
+
+    function createGrid() {
+        for (let i = 0; i < 100; i++) {
+
+            // Creating player cell
+            const playerCell = document.createElement('div');
+            playerCell.classList.add('cell');
+            playerCell.dataset.index = i;
+            playerCell.addEventListener('click', handleMove);
+            playerGrid.appendChild(playerCell);
+
+            // Creating enemy cell
+            const enemyCell = document.createElement('div');            
+            enemyCell.classList.add('cell');            
+            enemyCells.push(enemyCell);
+            enemyCell.dataset.index = i;
+            enemyCell.addEventListener('click', handleAttack);
+            enemyGrid.appendChild(enemyCell);
+        }
+    }
+
 
     function checkShip(index){
         //for (let ship of ships)

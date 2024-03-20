@@ -3,6 +3,7 @@
     grid-template-columns: repeat(10, 40px);
     grid-template-rows: repeat(10, 40px);
     gap: 1px;
+    /*margin: 10px 10px 10px 10px;*/
 }
 
 .cell {
