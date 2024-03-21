@@ -25,3 +25,8 @@
 .miss {
     background-color: gray;
 }
+
+.draggable {    
+    position: absolute;
+    cursor: pointer;
+}

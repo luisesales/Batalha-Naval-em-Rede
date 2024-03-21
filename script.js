@@ -72,6 +72,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         return false;
     }
+    
+
+    const draggableElements = document.getElementsByClassName('draggable');
+    let lastPosX = [], lastPosY = [];
+    let offsetX, offsetY;
+
+    // Função para iniciar o arrastamento
+    function startDragging(event) {
+        // Calcula o deslocamento entre o canto superior esquerdo do elemento e o ponto onde o mouse foi clicado
+        offsetX = event.clientX - lastPosX[event.target.shipIndex];
+        offsetY = event.clientY - lastPosY[event.target.shipIndex];
+
+        // Adiciona um ouvinte de eventos para o movimento do mouse e para soltar o mouse
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', stopDragging);
+    }
+
+    // Função para arrastar o elemento
+    function drag(event) {
+        // Define a nova posição do elemento com base na posição do mouse e no deslocamento calculado
+        draggableElements[event.target.shipIndex].style.left = (event.clientX - offsetX) + 'px';
+        draggableElements[event.target.shipIndex].style.top = (event.clientY - offsetY) + 'px';
+    }
+
+    // Função para parar de arrastar o elemento
+    function stopDragging() {
+        // Remove os ouvintes de eventos para o movimento do mouse e para soltar o mouse
+        document.removeEventListener('mousemove', drag);
+        document.removeEventListener('mouseup', stopDragging);
+    }
+
+    
+    function updatePositions(){}
+   
+   function setupGame(){            
+        // Adiciona um ouvinte de eventos aos elemento para iniciar o arrastamento
+        for(let i = 0; i < draggableElements.length;i++){            
+            draggableElements[i].addEventListener('mousedown', startDragging);
+            lastPosX.push(draggableElements[i].getBoundingClientRect().left);
+            lastPosY.push(draggableElements[i].getBoundingClientRect().top);
+            draggableElements[i].shipIndex = i;
+        }
+   }
+   
+    setupGame();
     createGrid();
 
 });
